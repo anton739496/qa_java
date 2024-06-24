@@ -6,7 +6,8 @@ import org.junit.Test;
 import java.util.List;
 
 public class FelineTest {
-    Feline feline = new Feline();
+    private final Feline feline = new Feline();
+
     @Test
     public void family() {
         String family = feline.getFamily();
@@ -25,6 +26,7 @@ public class FelineTest {
     }
     @Test
     public void eatMeat() throws Exception {
-        Assert.assertEquals(feline.eatMeat(), List.of("Животные", "Птицы", "Рыба"));
+        Assert.assertEquals(List.of("Животные", "Птицы", "Рыба"), feline.eatMeat());
     }
+
 }

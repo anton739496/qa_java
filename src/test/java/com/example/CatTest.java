@@ -14,31 +14,19 @@ import java.util.List;
 
 import static org.mockito.Mockito.*;
 
-@RunWith(Parameterized.class)
 public class CatTest {
 
     @Mock
-    Feline feline;
+    private Feline feline;
+    private Cat cat;
 
-    Cat cat;
-
-    private final List<String> expectedFood;
-
-    public CatTest(List<String> expectedFood) {
-        this.expectedFood = expectedFood;
-    }
-
-    @Parameterized.Parameters
-    public static Collection<Object[]> data() {
-        return Arrays.asList(new Object[][] {
-                { List.of("Животные", "Птицы", "Рыба") }
-        });
-    }
+    private List<String> expectedFood;
 
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
         cat = new Cat(feline);
+        expectedFood = List.of("Животные", "Птицы", "Рыба");
     }
 
     @Test
@@ -49,6 +37,7 @@ public class CatTest {
     @Test
     public void eatMeat() throws Exception {
         when(feline.eatMeat()).thenReturn(expectedFood);
+
         Assert.assertEquals(expectedFood, cat.getFood());
     }
 }
